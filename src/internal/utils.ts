@@ -6,4 +6,4 @@
  */
 
 export const isObject = (value: any): boolean =>
-  value && typeof value === 'object' && !Array.isArray(value);
+  !!(value && typeof value === 'object' && !Array.isArray(value));
