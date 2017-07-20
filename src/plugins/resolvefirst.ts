@@ -7,6 +7,7 @@
 
 import { isObject } from '../internal/utils';
 
+/** Resolve array fallback values to the array's first entry */
 const resolveFirst = (style: { [property: string]: any }): { [property: string]: any } => {
   const result: { [property: string]: any } = {};
 

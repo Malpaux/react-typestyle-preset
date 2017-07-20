@@ -4,6 +4,13 @@
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
 
+/**
+ * The main entry point
+ * @module react-typestyle-preset
+ * @author Paul Brachmann
+ * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
+ */
+
 import * as React from 'react';
 
 import withStylesSetup, * as style from 'react-typestyle';

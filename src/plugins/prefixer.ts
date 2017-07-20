@@ -9,6 +9,7 @@ import * as prefix from 'inline-style-prefixer/static';
 
 import { isObject } from '../internal/utils';
 
+/** Recursively add vendor prefixes */
 const addVendorPrefixes = (style: { [property: string]: any }): { [property: string]: any } => {
   const result: { [property: string]: any } = {};
 

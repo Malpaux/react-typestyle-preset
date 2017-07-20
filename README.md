@@ -8,12 +8,12 @@ React-TypeStyle-Preset provides a ready to use [React-TypeStyle](https://www.npm
 
 using [yarn](https://yarnpkg.com/en/)
 ```shell
-yarn add react-typestyle-preset
+yarn add react-typestyle-preset react-typestyle react-typestyle-inline
 ```
 
 or npm
 ```shell
-npm install --save react-typestyle-preset
+npm install --save react-typestyle-preset react-typestyle react-typestyle-inline
 ```
 
 ## Usage
@@ -22,7 +22,8 @@ Just add a static ```styles``` and ```inlineStyles``` field to your React compon
 ### Example
 #### TypeScript
 ```typescript
-import withStyles from 'react-typestyle-preset';
+import { InputSheet } from 'react-typestyle';
+import withStyles, { InjectedProps } from 'react-typestyle-preset';
 
 interface Props {
   name: string;
@@ -31,13 +32,7 @@ interface Props {
 }
 
 class Component extends React.PureComponent<Props & InjectedProps> {
-  public static inlineStyles = (props) => {
-    root: {
-      transform: `translate(${props.pos.x}px,${props.pos.y}px)`,
-    },
-  };
-
-  public static styles = {
+  public static styles: InputSheet<Props> = {
     button: {
       background: 'transparent',
       border: 'none',
@@ -47,6 +42,12 @@ class Component extends React.PureComponent<Props & InjectedProps> {
       position: 'absolute',
     }),
   };
+
+  public static inlineStyles: InputSheet<Props> = (props) => ({
+    root: {
+      transform: `translate(${props.pos.x}px,${props.pos.y}px)`,
+    },
+  })
 
   public render() {
     const { classNames, name, styles } = this.props;
@@ -66,12 +67,6 @@ export default withStyles<Props>(Component);
 import withStyles from 'react-typestyle-preset';
 
 class Component extends React.PureComponent {
-  static inlineStyles = (props) => {
-    root: {
-      transform: `translate(${props.pos.x}px,${props.pos.y}px)`,
-    },
-  };
-
   static styles = {
     button: {
       background: 'transparent',
@@ -82,6 +77,12 @@ class Component extends React.PureComponent {
       position: 'absolute',
     }),
   };
+
+  static inlineStyles = (props) => ({
+    root: {
+      transform: `translate(${props.pos.x}px,${props.pos.y}px)`,
+    },
+  })
 
   render() {
     const { classNames, name, styles } = this.props;
