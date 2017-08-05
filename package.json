@@ -38,7 +38,8 @@
     "clean": "rimraf dist",
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --project tsconfig.json --fix",
-    "test": "jest --env=jsdom"
+    "test": "jest --env=jsdom",
+    "test:coverage": "jest --env=jsdom --coverage"
   },
   "dependencies": {
     "inline-style-prefixer": "^3.0.6"
@@ -75,6 +76,7 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
+    "mapCoverage": true,
     "roots": [
       "<rootDir>/src/"
     ],

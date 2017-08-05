@@ -43,6 +43,11 @@ describe('withStyles higher-order component', () => {
 
     BaseComponent.styles = {
       button: ({ theme: { color, bg } }) => ({
+        $nest: {
+          a: {
+            background: bg,
+          },
+        },
         background: bg,
         color,
       }),
@@ -53,9 +58,11 @@ describe('withStyles higher-order component', () => {
 
     BaseComponent.inlineStyles = ({ pos }) => ({
       root: {
+        cursor: ['move', 'grab'],
+        sub: { cursor: 'move' },
         transform: pos && `translate(${pos.x}px,${pos.y}px)`,
       },
-    });
+    }) as any;
 
     const WrappedComponent = withStyles<Props>(BaseComponent);
 
@@ -72,11 +79,14 @@ describe('withStyles higher-order component', () => {
 
     const classNames = (component.prop('classNames') as {[name: string]: any});
     const style = `.${classNames.root}{position:absolute}.${
-      classNames.button}{background:#000;color:#fff}`;
+      classNames.button}{background:#000;color:#fff}.${
+        classNames.button} a{background:#000}`;
     expect(defaultRenderer.getStyles()).toBe(style);
 
     const styles = (component.prop('styles') as {[name: string]: any});
     expect(styles.root).toEqual({
+      cursor: 'move',
+      sub: { cursor: 'move' },
       transform: 'translate(256px,128px)',
       WebkitTransform: 'translate(256px,128px)',
     });
@@ -94,6 +104,8 @@ describe('withStyles higher-order component', () => {
 
     const styles2 = (component2.prop('styles') as {[name: string]: any});
     expect(styles2.root).toEqual({
+      cursor: 'move',
+      sub: { cursor: 'move' },
       transform: 'translate(512px,0px)',
       WebkitTransform: 'translate(512px,0px)',
     });
