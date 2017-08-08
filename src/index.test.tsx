@@ -1,4 +1,10 @@
 /**
+ * @file Entry point test suite
+ * @author Paul Brachmann
+ * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
+ */
+
+/**
  * Important: This test also serves as a point to
  * import the entire lib for coverage reporting
  */

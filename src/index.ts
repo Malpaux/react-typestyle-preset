@@ -5,7 +5,7 @@
  */
 
 /**
- * The main entry point
+ * Higher-order component combining React-TypeStyle & React-TypeStyle-Inline
  * @module react-typestyle-preset
  * @author Paul Brachmann
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
