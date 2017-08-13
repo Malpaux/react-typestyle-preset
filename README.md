@@ -22,8 +22,7 @@ Just add a static ```styles``` and ```inlineStyles``` field to your React compon
 ### Example
 #### TypeScript
 ```typescript
-import { InputSheet } from 'react-typestyle';
-import withStyles, { InjectedProps } from 'react-typestyle-preset';
+import withStyles, { InjectedProps, InputSheet } from 'react-typestyle-preset';
 
 interface Props {
   name: string;
@@ -95,6 +94,32 @@ class Component extends React.PureComponent {
 }
 
 export default withStyles(Component);
+```
+
+### Utilities
+
+#### Dynamic Extend
+If you are using dynamic styles (your stylesheet includes functions), TypeStyle's standard ```extend``` won't work for you.  
+If you want to compose dynamic styles, use React-TypeStyle's dynamic ```extend``` instead.
+
+```javascript
+import { extend } from 'react-typestyle-preset';
+
+// Compose styles
+const styles = extend(
+  ({ background }) => ({ background }),
+  { color: '#fff' },
+  () => ({}),
+);
+
+// Use them in the higher-order component
+class Component extends React.PureComponent {
+  static styles = {
+    root: styles,
+  };
+
+  render() {/* ... */}
+}
 ```
 
 ## Developing

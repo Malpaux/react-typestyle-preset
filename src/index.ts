@@ -1,5 +1,5 @@
 /**
- * @file The main entry point
+ * @file Main entry point
  * @author Paul Brachmann
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
@@ -19,6 +19,7 @@ import withInlineStylesSetup, * as inline from 'react-typestyle-inline';
 import prefixerPlugin from './plugins/prefixer';
 import resolveFirstPlugin from './plugins/resolvefirst';
 
+export { InputSheet, extend } from 'react-typestyle';
 export interface InjectedProps extends style.InjectedProps, inline.InjectedProps {}
 export interface ComponentOptions<P> {
   inlineStyles?: inline.InputSheet<P>;
