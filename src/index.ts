@@ -25,12 +25,16 @@ export interface ComponentOptions<P> {
   inlineStyles?: inline.InputSheet<P>;
   styles?: style.InputSheet<P>;
 }
-export type StyledStatelessComponent<P = {}> = React.StatelessComponent<P> & ComponentOptions<P>;
+export type StyledStatelessComponent<P = {}> = React.StatelessComponent<P & InjectedProps>
+  & ComponentOptions<P>;
 
 const withStyles = withStylesSetup({
   plugins: [prefixerPlugin],
   shouldStylesUpdate: (props, nextProps) =>
-    (props as { [key: string]: any }).theme !== (nextProps as { [key: string]: any }).theme,
+    style.shallowCompare(
+      (props as { [key: string]: any }).theme,
+      (nextProps as { [key: string]: any }).theme,
+    ),
 });
 
 const withInlineStyles = withInlineStylesSetup({

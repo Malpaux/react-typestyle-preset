@@ -9,7 +9,11 @@
  * import the entire lib for coverage reporting
  */
 
-import { shallow } from 'enzyme';
+import * as Enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+
 import * as React from 'react';
 
 import { defaultRenderer } from 'react-typestyle';
@@ -36,7 +40,7 @@ describe('withStyles higher-order component', () => {
       pos: { x: number, y: number };
       theme: { [key: string]: any };
     }
-    const BaseComponent = ((props) => (
+    const BaseComponent: lib.StyledStatelessComponent<Props> = ((props) => (
       <div className={props.classNames.root} style={props.styles.root}>
         <button
           className={props.classNames.button}
@@ -45,7 +49,7 @@ describe('withStyles higher-order component', () => {
           {props.name}
         </button>
       </div>
-    )) as lib.StyledStatelessComponent<Props & lib.InjectedProps>;
+    ));
 
     BaseComponent.styles = {
       button: ({ theme: { color, bg } }) => ({
@@ -74,7 +78,7 @@ describe('withStyles higher-order component', () => {
 
     const theme = { bg: '#000', color: '#fff' };
 
-    const outerComponent = shallow((
+    const outerComponent = Enzyme.shallow((
       <WrappedComponent
         name="Test"
         pos={{ x: 256, y: 128 }}
